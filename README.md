@@ -1,16 +1,69 @@
-# React + Vite
+# Kedai KotaKu
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Website katalog dan pemesanan untuk Kedai KotaKu, Wonosobo. Pengunjung dapat melihat menu makanan dan minuman, memilih varian serta opsi pesanan, mengelola keranjang, lalu mengirim pesanan melalui WhatsApp.
 
-Currently, two official plugins are available:
+## Fitur
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Katalog menu makanan dan minuman berdasarkan kategori
+- Pilihan varian, saus, tingkat penyajian, dan topping
+- Keranjang pesanan dengan jumlah item dan catatan per item
+- Total pesanan otomatis
+- Pengiriman format pesanan ke WhatsApp
+- Informasi lokasi, jam buka, dan peta kedai
+- Tampilan responsif untuk perangkat seluler dan desktop
 
-## React Compiler
+## Teknologi
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19
+- Vite 8
+- Tailwind CSS 4
+- React Icons
 
-## Expanding the ESLint configuration
+## Menjalankan Proyek
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Prasyarat: Node.js 20.19+ atau 22.12+.
+
+```bash
+npm install
+npm run dev
+```
+
+Vite akan menampilkan URL lokal aplikasi di terminal, biasanya `http://localhost:5173`.
+
+## Perintah
+
+```bash
+# Menjalankan server pengembangan
+npm run dev
+
+# Membuat build produksi ke direktori dist
+npm run build
+
+# Menjalankan pemeriksaan ESLint
+npm run lint
+
+# Menjalankan build produksi secara lokal
+npm run preview
+```
+
+## Mengubah Konten
+
+- Informasi kedai dan nomor WhatsApp: `src/data/Setting.js`
+- Data makanan: `src/data/makanan.js`
+- Data minuman: `src/data/minuman.js`
+- Gambar hero, logo, dan poster menu: `src/assets/kotaku/`
+
+Nomor WhatsApp pada `Setting.js` harus menggunakan format internasional tanpa karakter `+`, misalnya `6281234567890`.
+
+## Struktur Proyek
+
+```text
+src/
+  assets/kotaku/       Gambar aplikasi
+  components/          Komponen antarmuka
+  data/                Data menu dan konfigurasi kedai
+  pages/               Halaman aplikasi
+  styles/              Gaya global Tailwind
+  App.jsx              Status keranjang dan aplikasi utama
+  main.jsx             Entry point React
+```
