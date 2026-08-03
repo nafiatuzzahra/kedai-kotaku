@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #fffdf7;
+  color: #1c1917;
+}
+
+* { box-sizing: border-box; }
+
+::selection { background: #fecaca; color: #1c1917; }
+
+.brand-gradient { background: linear-gradient(105deg, #ef2226 0%, #f7be16 24%, #e7007d 47%, #35b735 68%, #09aaa9 84%, #8136be 100%); }
+.brand-text { background: linear-gradient(100deg, #ef2226, #f7a916, #e7007d, #09aaa9, #8136be); -webkit-background-clip: text; background-clip: text; color: transparent; }

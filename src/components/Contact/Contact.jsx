@@ -1,0 +1,7 @@
+import { FaWhatsapp } from "react-icons/fa";
+import settings from "../../data/Setting";
+
+function Contact() {
+  return <section id="contact" className="relative overflow-hidden bg-[#4d176f] py-16 text-white sm:py-24"><div className="brand-gradient absolute inset-x-0 top-0 h-2" /><div className="mx-auto max-w-7xl px-5 sm:px-6"><p className="text-sm font-black tracking-[0.2em] text-[#f9d423]">KONTAK</p><h2 className="mt-3 text-3xl font-black sm:text-4xl">Mampir atau pesan sekarang.</h2><div className="mt-8 grid gap-4 text-stone-100 sm:gap-6 md:grid-cols-3"><div className="rounded-2xl bg-[#ef2226] p-5"><p className="font-bold text-white">Alamat</p><p className="mt-2">{settings.address}</p></div><div className="rounded-2xl bg-[#09aaa9] p-5"><p className="font-bold text-white">Jam buka</p><p className="mt-2">Setiap hari, {settings.open}–{settings.close}</p></div><a className="flex items-center gap-3 rounded-2xl bg-[#f7bc19] p-5 font-bold text-[#4d176f] transition hover:bg-[#ffd15a]" href={`https://wa.me/${settings.whatsapp}`} target="_blank" rel="noreferrer"><FaWhatsapp size={24} /> WhatsApp untuk pesan</a></div><div className="mt-6 overflow-hidden rounded-3xl border border-white/20 bg-white/10 p-2 shadow-2xl sm:mt-8"><iframe title="Lokasi Kedai KotaKu" src="https://www.google.com/maps?q=Jl.+Argopeni+No.+30,+Wonosobo&output=embed" className="h-64 w-full rounded-2xl border-0 sm:h-80" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div></div></section>;
+}
+export default Contact;
