@@ -1,10 +1,13 @@
 import { useMemo, useState } from "react";
 import Home from "./pages/Home";
+import Admin from "./pages/Admin";
+import { createOrder } from "./lib/orders";
 
 function App() {
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [customerName, setCustomerName] = useState("");
+  const [customerPhone, setCustomerPhone] = useState("");
   const cartCount = useMemo(
     () => cart.reduce((total, item) => total + item.quantity, 0),
     [cart],
@@ -22,7 +25,16 @@ function App() {
     setCart((current) => current.filter((item) => item.id !== id));
   }
 
-  return <Home cart={cart} cartCount={cartCount} customerName={customerName} onCustomerNameChange={setCustomerName} isCartOpen={isCartOpen} onOpenCart={() => setIsCartOpen(true)} onCloseCart={() => setIsCartOpen(false)} onUpdateCartItem={updateCartItem} onRemoveCartItem={removeCartItem} onAddToCart={addToCart} />;
+  async function checkout() {
+    const order = await createOrder({ customerName, customerPhone, items: cart });
+    setCart([]);
+    setCustomerName("");
+    setCustomerPhone("");
+    return order;
+  }
+
+  if (window.location.pathname.startsWith("/admin")) return <Admin />;
+  return <Home cart={cart} cartCount={cartCount} customerName={customerName} customerPhone={customerPhone} onCustomerNameChange={setCustomerName} onCustomerPhoneChange={setCustomerPhone} isCartOpen={isCartOpen} onOpenCart={() => setIsCartOpen(true)} onCloseCart={() => setIsCartOpen(false)} onUpdateCartItem={updateCartItem} onRemoveCartItem={removeCartItem} onAddToCart={addToCart} onCheckout={checkout} />;
 }
 
 export default App;

@@ -18,6 +18,7 @@ Website katalog dan pemesanan untuk Kedai KotaKu, Wonosobo. Pengunjung dapat mel
 - Vite 8
 - Tailwind CSS 4
 - React Icons
+- SheetJS (`xlsx`) untuk ekspor Excel
 
 ## Menjalankan Proyek
 
@@ -29,6 +30,13 @@ npm run dev
 ```
 
 Vite akan menampilkan URL lokal aplikasi di terminal, biasanya `http://localhost:5173`.
+
+## Supabase, Admin, dan Order
+
+- Jalankan SQL pada `supabase/migrations/20260817_initial.sql` melalui Supabase SQL Editor.
+- Buat satu data restaurant dan profile owner/admin yang menghubungkan user Supabase Auth ke restaurant tersebut. Gunakan slug restaurant itu sebagai `VITE_RESTAURANT_SLUG`.
+- Salin `.env.example` menjadi `.env.local`, isi URL dan anon key Supabase. Jangan gunakan service-role key di frontend.
+- Panel admin tersedia pada `/admin` dan memakai Supabase Auth. Order checkout tersimpan dahulu di PostgreSQL, lalu WhatsApp dibuka menggunakan nomor order dari database.
 
 ## Perintah
 

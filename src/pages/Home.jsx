@@ -6,7 +6,7 @@ import Contact from "../components/Contact/Contact";
 import Footer from "../components/Footer/Footer";
 import Cart from "../components/Cart/Cart";
 
-function Home({ cart, cartCount, customerName, onCustomerNameChange, isCartOpen, onOpenCart, onCloseCart, onUpdateCartItem, onRemoveCartItem, onAddToCart }) {
+function Home({ cart, cartCount, customerName, customerPhone, onCustomerNameChange, onCustomerPhoneChange, isCartOpen, onOpenCart, onCloseCart, onUpdateCartItem, onRemoveCartItem, onAddToCart, onCheckout }) {
   return (
     <>
       <Navbar cartCount={cartCount} onOpenCart={onOpenCart} />
@@ -17,7 +17,7 @@ function Home({ cart, cartCount, customerName, onCustomerNameChange, isCartOpen,
         <Contact />
       </main>
       <Footer />
-      <Cart items={cart} customerName={customerName} onCustomerNameChange={onCustomerNameChange} open={isCartOpen} onClose={onCloseCart} onUpdate={onUpdateCartItem} onRemove={onRemoveCartItem} />
+      <Cart items={cart} customerName={customerName} customerPhone={customerPhone} onCustomerNameChange={onCustomerNameChange} onCustomerPhoneChange={onCustomerPhoneChange} onCheckout={onCheckout} open={isCartOpen} onClose={onCloseCart} onUpdate={onUpdateCartItem} onRemove={onRemoveCartItem} />
     </>
   );
 }

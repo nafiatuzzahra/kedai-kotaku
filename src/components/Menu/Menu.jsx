@@ -20,6 +20,7 @@ function Menu({ onAddToCart }) {
         <MenuBook items={menu} type={active} onSelect={setSelectedMenu} />
       </div>
       <MenuModal
+        key={selectedMenu?.id || "closed"}
         menu={selectedMenu}
         onClose={() => setSelectedMenu(null)}
         onAdd={(item) => {

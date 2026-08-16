@@ -1,19 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function MenuModal({ menu, onClose, onAdd }) {
-  const [variant, setVariant] = useState(null);
+  const [variant, setVariant] = useState(() => menu?.variants[0] || null);
   const [options, setOptions] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [note, setNote] = useState("");
-
-  useEffect(() => {
-    if (menu) {
-      setVariant(menu.variants[0]);
-      setOptions({});
-      setQuantity(1);
-      setNote("");
-    }
-  }, [menu]);
 
   if (!menu || !variant) return null;
 
