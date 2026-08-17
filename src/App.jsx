@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
+import Developer from "./pages/Developer";
 import { createOrder } from "./lib/orders";
 
 function App() {
@@ -33,7 +34,8 @@ function App() {
     return order;
   }
 
-  if (window.location.pathname.startsWith("/admin")) return <Admin />;
+  if (window.location.pathname === "/developer" || window.location.pathname.startsWith("/developer/")) return <Developer />;
+  if (window.location.pathname === "/admin" || window.location.pathname.startsWith("/admin/")) return <Admin />;
   return <Home cart={cart} cartCount={cartCount} customerName={customerName} customerPhone={customerPhone} onCustomerNameChange={setCustomerName} onCustomerPhoneChange={setCustomerPhone} isCartOpen={isCartOpen} onOpenCart={() => setIsCartOpen(true)} onCloseCart={() => setIsCartOpen(false)} onUpdateCartItem={updateCartItem} onRemoveCartItem={removeCartItem} onAddToCart={addToCart} onCheckout={checkout} />;
 }
 

@@ -7,8 +7,8 @@ function requireSupabase() {
   if (!isSupabaseConfigured) throw new Error("Layanan pesanan belum dikonfigurasi.");
 }
 
-function mapOrder(order) {
-  return { id: order.order_number, databaseId: order.id, createdAt: order.created_at, updatedAt: order.updated_at, customerName: order.customer_name, customerPhone: order.customer_phone, items: order.items || [], subtotal: Number(order.subtotal), total: Number(order.total), status: order.status, source: order.source };
+export function mapOrder(order) {
+  return { id: order.order_number, databaseId: order.id, createdAt: order.created_at, updatedAt: order.updated_at, customerName: order.customer_name, customerPhone: order.customer_phone, items: order.items || [], subtotal: Number(order.subtotal), total: Number(order.total), status: order.status, source: order.source, restaurantName: order.restaurant_name, restaurantSlug: order.restaurant_slug };
 }
 
 export function getOrderFee(order) { return order.status === "Selesai" ? WEBSITE_FEE_PER_COMPLETED_ORDER : 0; }
@@ -37,4 +37,25 @@ export async function updateOrderStatus(orderNumber, status) {
   const { data, error } = await supabase.rpc("update_order_status", { p_order_number: orderNumber, p_status: status });
   if (error) throw new Error("Status belum dapat diperbarui.");
   return mapOrder(data);
+}
+
+export async function getMyProfile() {
+  requireSupabase();
+  const { data, error } = await supabase.from("profiles").select("name, role, restaurant_id, restaurants(name, slug)").single();
+  if (error) throw new Error("Profil akses tidak ditemukan.");
+  return data;
+}
+
+export async function getDeveloperReport({ from = null, to = null, restaurantId = null } = {}) {
+  requireSupabase();
+  const { data, error } = await supabase.rpc("get_developer_order_report", { p_from: from, p_to: to, p_restaurant_id: restaurantId });
+  if (error) throw new Error("Laporan developer tidak dapat dimuat.");
+  return (data || []).map(mapOrder);
+}
+
+export async function getDeveloperRestaurants() {
+  requireSupabase();
+  const { data, error } = await supabase.rpc("get_developer_restaurant_report");
+  if (error) throw new Error("Daftar restaurant tidak dapat dimuat.");
+  return data || [];
 }
