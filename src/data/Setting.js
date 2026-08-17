@@ -1,7 +1,7 @@
 const settings = {
   storeName: "Kedai KotaKu",
 
-  whatsapp: "621246693401",
+  whatsapp: "625165932721",
 
   address: "Jl. Argopeni No.30 Wonosobo",
 
